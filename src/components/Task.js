@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function Task({
   task: { id, title, state },
@@ -21,14 +21,20 @@ export default function Task({
         ></span>
       </label>
       <div className="title">
-        <input type="text" value={title} readOnly={true} placeholder="Input title"/>
+        <input
+          type="text"
+          value={title}
+          readOnly={true}
+          placeholder="Input title"
+          style={{ textOverflow: 'ellipsis' }}
+        />
       </div>
 
-      <div className="actions" onClick={event => event.stopPropagation()}>
-        {state !== 'TASK_ARCHIVED' && (
-            <a href="#www" onClick={() => onPinTask(id)}>
-                <span className={`icon-star`} />
-            </a>
+      <div className="actions" onClick={(event) => event.stopPropagation()}>
+        {state !== "TASK_ARCHIVED" && (
+          <a href="#www" onClick={() => onPinTask(id)}>
+            <span className={`icon-star`} />
+          </a>
         )}
       </div>
     </div>
@@ -36,11 +42,11 @@ export default function Task({
 }
 
 Task.propTypes = {
-    task: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        state: PropTypes.string.isRequired,
-    }),
-    onArchiveTask: PropTypes.func,
-    onPinTask: PropTypes.func,
+  task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired,
+  }),
+  onArchiveTask: PropTypes.func,
+  onPinTask: PropTypes.func,
 };
